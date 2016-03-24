@@ -47,9 +47,27 @@ public class CostCalculator extends AppCompatActivity {
 
         TextView txtvwCostBreakdown = (TextView) findViewById(R.id.txtvwCostBreakdown);
 
-        //Insert your code here.
+        for (int i = 0; i < toppingsOnPizza.length; i++) {
+            if (toppingsOnPizza[i] == true) {
+                numToppings = numToppings + 1;
+            }
+        }
 
-        String costs = String.format("Toppings: %d x $0.75 = $%.2f\nSize: %s = $%.2f\n" +
+        toppingCost = numToppings*TOPPING_COST;
+
+        if (sizeName.equals("individual")){
+            sizeCost = INDIVIDUAL_COST;
+        } else if (sizeName.equals("small")){
+            sizeCost = SMALL_COST;
+        }else if (sizeName.equals("medium")) {
+            sizeCost = MEDIUM_COST;
+        }else if (sizeName.equals("Large")) {
+            sizeCost = LARGE_COST;
+        } else if (sizeName.equals("Extra Large")) {
+            sizeCost = EXTRA_COST;
+        }
+
+        String costs = String.format("Toppings: %d x $0.50 = $%.2f\nSize: %s = $%.2f\n" +
                 "Crust Type: %s = $%.2f\nSubtotal: $%.2f\nTaxes: $%.2f\nTotal: $%.2f",
                 numToppings, toppingCost, sizeName, sizeCost, crustName, crustCost,
                 subtotal, taxes, totalCost);

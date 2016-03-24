@@ -55,14 +55,53 @@ public class PizzaPreferences extends AppCompatActivity {
      * of costs.
      * @param vw is the button associated with the calculateCost method
      */
-    public void calculateCost(View vw){
+    public void calculateCost(View vw) {
 
         Intent calculatePizzaCost = new Intent(this, CostCalculator.class);
         boolean[] hasToppings = new boolean[toppings.length];
+        boolean hasGarlicCrust = false;
+        String crustSelection = "";
+        String sizeName = "";
 
-        //insert your code here
+        for (int i = 0; i < toppings.length; i++) {
+            if (toppings[i].isChecked()) {
+                hasToppings[i] = true;
+            } else {
+                hasToppings[i] = false;
+            }
+        }
 
-        calculatePizzaCost.putExtra("TOPPINGS_BOOLEANS", hasToppings);
+        if (rdobtnIndividual.isChecked()) {
+            sizeName = "individual";
+        } else if (rdobtnSmall.isChecked()) {
+            sizeName = "small";
+        } else if (rdobtnMedium.isChecked()) {
+            sizeName = "medium";
+        } else if (rdobtnLarge.isChecked()){
+            sizeName = "Large";
+        }else if (rdobtnExtraLarge.isChecked()){
+            sizeName = "Extra Large";
+        }
+
+        if (rdobtnThin.isChecked()){
+            crustSelection = "Thin";
+        }else if (rdobtnThick.isChecked()) {
+            crustSelection = "Thick";
+        }else if (rdobtnCheeseFilled.isChecked()){
+            crustSelection = "Cheese Filled";
+        }
+
+        if (chkboxGarlic.isChecked()){
+            hasGarlicCrust = true;
+        }
+
+            calculatePizzaCost.putExtra("TOPPINGS_BOOLEANS", hasToppings);
+        startActivityForResult(calculatePizzaCost, 0);
+        calculatePizzaCost.putExtra("SIZE_SELECTION", sizeName);
+        startActivityForResult(calculatePizzaCost, 0);
+        calculatePizzaCost.putExtra("HAS_GARLIC_CRUST", hasGarlicCrust);
+        startActivityForResult(calculatePizzaCost, 0);
+        calculatePizzaCost.putExtra("CRUST_SELECTION", crustSelection);
         startActivityForResult(calculatePizzaCost, 0);
     }
 
