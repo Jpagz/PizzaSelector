@@ -95,12 +95,9 @@ public class PizzaPreferences extends AppCompatActivity {
             hasGarlicCrust = true;
         }
 
-            calculatePizzaCost.putExtra("TOPPINGS_BOOLEANS", hasToppings);
-        startActivityForResult(calculatePizzaCost, 0);
+        calculatePizzaCost.putExtra("TOPPINGS_BOOLEANS", hasToppings);
         calculatePizzaCost.putExtra("SIZE_SELECTION", sizeName);
-        startActivityForResult(calculatePizzaCost, 0);
         calculatePizzaCost.putExtra("HAS_GARLIC_CRUST", hasGarlicCrust);
-        startActivityForResult(calculatePizzaCost, 0);
         calculatePizzaCost.putExtra("CRUST_SELECTION", crustSelection);
         startActivityForResult(calculatePizzaCost, 0);
     }
